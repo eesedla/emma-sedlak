@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emma Sedlak | Play</title>
+<style>
+  :root {
+    color-scheme: light dark;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+
+  .marquee {
+    width: min(1242px, 94vw);
+    margin: clamp(1rem, 4vw, 2.5rem) 0 0;
+  }
+
+  .marquee img {
+    width: 100%;
+    display: block;
+  }
+
+  .marquee a {
+    display: block;
+  }
+
+  .marquee a:focus-visible {
+    outline: 3px dashed #661400;
+    outline-offset: 6px;
+    border-radius: 8px;
+  }
+
+  /* ---- site nav: same work/play/bio labels as the homepage, no holes ---- */
+  .labels {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(1.5rem, 6vw, 4rem);
+    width: min(1100px, 94vw);
+    margin: clamp(1.5rem, 5vw, 3rem) 0;
+    padding: 0;
+  }
+
+  .labels a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: clamp(28px, 3.2vw, 44px);
+  }
+
+  .labels img {
+    height: 100%;
+    width: auto;
+    display: block;
+  }
+
+  .labels a:focus-visible {
+    outline: 3px dashed #661400;
+    outline-offset: 6px;
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+
+<header class="marquee">
+  <a href="index.html" aria-label="Emma Sedlak home"><img src="marquee.png" alt="Emma Sedlak. Currently: Cleveland, OH"></a>
+</header>
+
+<nav>
+  <ul class="labels">
+    <li><a href="work.html" aria-label="Work"><img src="work.png" alt="Work"></a></li>
+    <li><a href="play.html" aria-label="Play"><img src="play.png" alt="Play"></a></li>
+    <li><a href="bio.html" aria-label="Bio"><img src="bio.png" alt="Bio"></a></li>
+  </ul>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Emma Sedlak | Bio</title>
+<style>
+  :root {
+    color-scheme: light dark;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+
+  .marquee {
+    width: min(1242px, 94vw);
+    margin: clamp(1rem, 4vw, 2.5rem) 0 0;
+  }
+
+  .marquee img {
+    width: 100%;
+    display: block;
+  }
+
+  .marquee a {
+    display: block;
+  }
+
+  .marquee a:focus-visible {
+    outline: 3px dashed #661400;
+    outline-offset: 6px;
+    border-radius: 8px;
+  }
+
+  /* ---- site nav: same work/play/bio labels as the homepage, no holes ---- */
+  .labels {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(1.5rem, 6vw, 4rem);
+    width: min(1100px, 94vw);
+    margin: clamp(1.5rem, 5vw, 3rem) 0;
+    padding: 0;
+  }
+
+  .labels a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: clamp(28px, 3.2vw, 44px);
+  }
+
+  .labels img {
+    height: 100%;
+    width: auto;
+    display: block;
+  }
+
+  .labels a:focus-visible {
+    outline: 3px dashed #661400;
+    outline-offset: 6px;
+    border-radius: 8px;
+  }
+
+  /* ---- bio content: headshot with bio text to its right ---- */
+  .bio-content {
+    width: min(1100px, 94vw);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+    margin: 0 0 clamp(2rem, 6vw, 4rem);
+  }
+
+  .headshot {
+    flex: 0 0 auto;
+    margin: 0;
+    width: min(300px, 42vw);
+    box-shadow:
+      0 0 0 3px #d1d400,
+      0 0 0 6px #661400,
+      0 8px 18px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+
+  .headshot img {
+    width: 100%;
+    display: block;
+  }
+
+  .bio-text {
+    flex: 1 1 320px;
+    min-width: 0;
+  }
+
+  .bio-text h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    line-height: 1.3;
+    color: #661400;
+  }
+
+  .bio-text p {
+    margin: 0 0 1rem;
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    line-height: 1.6;
+    color: #2a0800;
+  }
+
+  .bio-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  .bio-text a {
+    color: #661400;
+    text-decoration: underline;
+  }
+
+  /* ---- resume link ---- */
+  .resume-link {
+    width: min(1100px, 94vw);
+    margin: 0 0 clamp(2rem, 6vw, 4rem);
+  }
+
+  .resume-link a {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: clamp(1.5rem, 2.7vw, 1.725rem);
+    font-weight: bold;
+    color: #661400;
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+
+<header class="marquee">
+  <a href="index.html" aria-label="Emma Sedlak home"><img src="marquee.png" alt="Emma Sedlak. Currently: Cleveland, OH"></a>
+</header>
+
+<nav>
+  <ul class="labels">
+    <li><a href="work.html" aria-label="Work"><img src="work.png" alt="Work"></a></li>
+    <li><a href="play.html" aria-label="Play"><img src="play.png" alt="Play"></a></li>
+    <li><a href="bio.html" aria-label="Bio"><img src="bio.png" alt="Bio"></a></li>
+  </ul>
+</nav>
+
+<div class="bio-content">
+  <div class="bio-text">
+    <h1>I'm a fourth-generation Clevelander working at the intersection of politics, philosophy, and public service.</h1>
+    <p>My background is interdisciplinary &mdash; a degree in political studies and philosophy from Pitzer College, where I wrote my thesis on political realignment in Northeast Ohio. What draws me isn't any single discipline but the question underneath them: how do public institutions actually work, and who do they work for?</p>
+    <p>Journalism and advocacy are how I pursue that question. I want to show people how public systems are supposed to work for them, and give them the tools they need to check.</p>
+    <p>I report for Signal Cleveland and have been a Cleveland Documenter since 2022, sitting in on the city council, school board, and county committee meetings where decisions get made. I've also reviewed more than 1,500 police disciplinary records and built them into a searchable public database, and interviewed 75 residents about what they wanted from a local election, then carried that agenda to candidates directly.</p>
+    <p>I'm always open to collaborating with newsrooms, community organizations, and anyone else working to make this city's systems easier to see. Reach me at <a href="mailto:eesedla@gmail.com">eesedla@gmail.com</a>.</p>
+  </div>
+  <figure class="headshot">
+    <img src="headshot.jpg" alt="Headshot of Emma Sedlak">
+  </figure>
+</div>
+
+<p class="resume-link">
+  <a href="Sedlak%2C%20Emma%20Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+</p>
+
+</body>
+</html>
