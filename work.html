@@ -23,6 +23,32 @@
     font-family: Georgia, "Times New Roman", serif;
   }
 
+  .top-menu {
+    width: min(1100px, 94vw);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .5rem;
+    margin: 0 0 clamp(2rem, 6vw, 4rem);
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    font-weight: bold;
+    letter-spacing: .03em;
+  }
+
+  .top-menu a {
+    color: #661400;
+    text-decoration: none;
+  }
+
+  .top-menu a:hover,
+  .top-menu a:focus-visible {
+    text-decoration: underline;
+  }
+
+  .top-menu span {
+    color: #945029;
+  }
+
   .marquee {
     width: min(1242px, 94vw);
     margin: clamp(1rem, 4vw, 2.5rem) 0 0;
@@ -147,21 +173,6 @@
     }
   }
 
-  /* ---- resume link ---- */
-  .resume-link {
-    width: min(1080px, 94vw);
-    margin: 0 0 clamp(1.5rem, 4vw, 2.5rem);
-  }
-
-  .resume-link a {
-    display: inline-flex;
-    align-items: center;
-    gap: .5rem;
-    font-size: clamp(1.5rem, 2.7vw, 1.725rem);
-    font-weight: bold;
-    color: #661400;
-    text-decoration: underline;
-  }
 </style>
 </head>
 <body>
@@ -178,9 +189,15 @@
   </ul>
 </nav>
 
-<p class="resume-link">
-  <a href="Sedlak%2C%20Emma%20Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
-</p>
+<nav class="top-menu">
+  <a href="Sedlak%2C%20Emma%20Resume.pdf" target="_blank" rel="noopener">cv</a>
+  <span aria-hidden="true">/</span>
+  <a href="mailto:eesedla@gmail.com">email</a>
+  <span aria-hidden="true">/</span>
+  <a href="https://www.linkedin.com/in/emma-sedlak/" target="_blank" rel="noopener">linkedin</a>
+  <span aria-hidden="true">/</span>
+  <a href="https://www.instagram.com/emmasedlak/" target="_blank" rel="noopener">instagram</a>
+</nav>
 
 <ul class="stories">
   <li>
