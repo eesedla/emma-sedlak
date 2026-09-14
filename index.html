@@ -86,6 +86,7 @@
   }
 
   .labels a {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,6 +97,21 @@
     height: 100%;
     width: auto;
     display: block;
+  }
+
+  /* WORK label swaps to its highlight color on hover/focus */
+  .labels .nav-highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity .15s ease;
+    pointer-events: none;
+  }
+
+  .labels a:hover .nav-highlight,
+  .labels a:focus-visible .nav-highlight {
+    opacity: 1;
   }
 
   .labels a:focus-visible {
@@ -189,7 +205,7 @@
 
 <nav>
   <ul class="labels">
-    <li><a href="index.html" aria-label="Work"><img src="work.png" alt="Work"></a></li>
+    <li><a href="index.html" aria-label="Work"><img src="work.png" alt="Work"><img src="work%20highlight.svg" alt="" class="nav-highlight" aria-hidden="true"></a></li>
     <li><a href="play.html" aria-label="Play"><img src="play.png" alt="Play"></a></li>
     <li><a href="bio.html" aria-label="Bio"><img src="bio.png" alt="Bio"></a></li>
   </ul>
