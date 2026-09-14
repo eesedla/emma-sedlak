@@ -73,6 +73,16 @@
     border-radius: 8px;
   }
 
+  .tagline {
+    width: min(1242px, 94vw);
+    margin: .5rem 0 0;
+    text-align: center;
+    font-family: "Libre Baskerville", Georgia, serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2.2vw, 1.3rem);
+    color: #661400;
+  }
+
   /* ---- site nav: same work/play/bio labels as the homepage, no holes ---- */
   .labels {
     list-style: none;
@@ -145,6 +155,7 @@
     aspect-ratio: 4 / 3;
     object-fit: cover;
     display: block;
+    border-radius: 12px;
     box-shadow:
       0 0 0 3px #d1d400,
       0 0 0 6px #661400,
@@ -202,6 +213,8 @@
 <header class="marquee">
   <a href="index.html" aria-label="Emma Sedlak home"><img src="marquee.png" alt="Emma Sedlak. Currently: Cleveland, OH"></a>
 </header>
+
+<p class="tagline">Civic &amp; Investigative Reporter</p>
 
 <nav>
   <ul class="labels">
