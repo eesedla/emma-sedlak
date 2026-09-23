@@ -179,17 +179,224 @@
     clip-path: url(#mole-reveal-clip);
   }
 
-  /* mole starts sunk below the hole and rises up between the hole's back
-     rim (Layer 3) and front rim (Layer 1) on hover/focus - straight move,
-     no overshoot/bounce */
-  .mole-layer {
-    transform: translateY(950px);
-    transition: transform 0.4s cubic-bezier(.22, 1, .36, 1);
+  /* game: moles start sunk below the hole. The game script adds .up to a
+     hole to raise its mole between the back rim (Layer 3) and front rim
+     (Layer 1) - straight move, no overshoot/bounce - and .is-dead to swap
+     in the knocked-out mole after a hit */
+  .hole-slot {
+    touch-action: manipulation;
+    -webkit-user-select: none;
+    user-select: none;
   }
 
-  .hole-slot:hover .mole-layer,
-  .hole-slot:focus-visible .mole-layer {
+  .mole-layer {
+    transform: translateY(950px);
+    transition: transform 0.18s ease-in;
+  }
+
+  .hole-slot.up .mole-layer {
     transform: translateY(0);
+    transition: transform 0.11s cubic-bezier(.22, 1, .36, 1);
+  }
+
+  .mole-dead,
+  .hole-slot.is-dead .mole-alive {
+    display: none;
+  }
+
+  .hole-slot.is-dead .mole-dead {
+    display: inline;
+  }
+
+  /* ---- game HUD ---- */
+  .game-hud {
+    width: min(1100px, 94vw);
+    margin: clamp(1.5rem, 5vw, 3rem) 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .9rem;
+    font-family: "Space Mono", monospace;
+    color: #661400;
+  }
+
+  .hud-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .5rem clamp(1rem, 4vw, 2.5rem);
+    font-size: clamp(.95rem, 2vw, 1.2rem);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+
+  .hud-stats span {
+    color: #945029;
+  }
+
+  .hud-stats b {
+    color: #661400;
+    font-size: 1.25em;
+    margin-left: .3em;
+  }
+
+  .start-btn {
+    font: inherit;
+    font-weight: bold;
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #2a0800;
+    background: #d1d400;
+    border: 3px solid #661400;
+    border-radius: 10px;
+    padding: .55rem 1.6rem;
+    box-shadow: 0 4px 0 #661400;
+    transition: transform .08s ease, box-shadow .08s ease;
+  }
+
+  .start-btn:hover:not(:disabled) {
+    background: #e0e300;
+  }
+
+  .start-btn:active:not(:disabled) {
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #661400;
+  }
+
+  .start-btn:disabled {
+    opacity: .55;
+  }
+
+  .start-btn:focus-visible {
+    outline: 3px dashed #661400;
+    outline-offset: 5px;
+  }
+
+  .game-msg {
+    margin: 0;
+    min-height: 1.4em;
+    text-align: center;
+    font-size: clamp(.85rem, 1.7vw, 1rem);
+    color: #945029;
+  }
+
+  /* ---- "new best" name entry ---- */
+  .name-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .6rem;
+    padding: 1rem 1.25rem;
+    border: 3px solid #661400;
+    border-radius: 12px;
+    background: #fffbe0;
+    font-size: clamp(.85rem, 1.7vw, 1rem);
+    text-align: center;
+  }
+
+  .name-form[hidden] {
+    display: none;
+  }
+
+  .name-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: .6rem;
+  }
+
+  .name-form input {
+    font: inherit;
+    color: #2a0800;
+    background: #fff;
+    border: 2px solid #661400;
+    border-radius: 8px;
+    padding: .5rem .7rem;
+    width: min(14em, 60vw);
+  }
+
+  .name-form input:focus-visible {
+    outline: 3px dashed #661400;
+    outline-offset: 3px;
+  }
+
+  .start-btn.small {
+    font-size: .95rem;
+    padding: .4rem 1.1rem;
+  }
+
+  .link-btn {
+    font: inherit;
+    color: #945029;
+    background: none;
+    border: 0;
+    text-decoration: underline;
+    padding: .3rem;
+  }
+
+  /* ---- leaderboard ---- */
+  .leaderboard {
+    width: min(560px, 94vw);
+    margin: clamp(1.5rem, 5vw, 3rem) 0 clamp(2rem, 6vw, 4rem);
+    text-align: center;
+  }
+
+  .leaderboard h2 {
+    margin: 0 0 1rem;
+    font-family: "Libre Baskerville", Georgia, serif;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    color: #661400;
+  }
+
+  .board {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: "Space Mono", monospace;
+    font-size: clamp(.95rem, 2vw, 1.1rem);
+  }
+
+  .board li {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr auto;
+    align-items: baseline;
+    gap: .5rem;
+    padding: .55rem .9rem;
+    border-bottom: 2px dotted #945029;
+    text-align: left;
+    color: #2a0800;
+  }
+
+  .board li.fresh {
+    background: #d1d400;
+    border-radius: 8px;
+    border-bottom-color: transparent;
+    font-weight: bold;
+  }
+
+  .board .rank {
+    color: #945029;
+  }
+
+  .board .pts {
+    font-weight: bold;
+    color: #661400;
+  }
+
+  .board-empty {
+    margin: 0;
+    font-family: "Space Mono", monospace;
+    font-size: .95rem;
+    color: #945029;
+  }
+
+  .board-note {
+    margin: .8rem 0 0;
+    font-family: "Space Mono", monospace;
+    font-size: .75rem;
+    color: #945029;
   }
 
   .hole-slot:focus-visible {
@@ -479,6 +686,10 @@
     <path class="cls-3" d="M641.33,810.02l.94.59.48-3.66s-.1.04-.15.05l.53-.07c-.05,0-.1,0-.15,0l.53.07c-.11-.02-.21-.05-.31-.09l.48.2c-.44-.21-.84-.52-1.22-.81l.4.31c-.88-.68-1.66-1.46-2.34-2.34l.31.4c-.26-.34-.51-.7-.74-1.06-.27-.43-.7-.78-1.2-.92s-1.12-.07-1.54.2c-.89.57-1.31,1.79-.72,2.74.7,1.12,1.55,2.18,2.52,3.08.54.5,1.13.96,1.73,1.38.23.16.47.33.72.46s.54.25.82.31c.44.09.94.12,1.37-.05.32-.12.63-.27.88-.51.31-.31.49-.72.55-1.15.11-.81-.27-1.56-.95-1.99l-.94-.59c-.89-.56-2.24-.21-2.74.72-.52.99-.23,2.14.72,2.74h0Z" />
   </g>
 
+  <!-- knocked-out mole: same photo, same canvas proportions and placement as the live mole -->
+  <g id="dead-mole-fig">
+    <image width="554" height="742" transform="translate(126.26) scale(.95)" href="dead-mole.webp" xlink:href="dead-mole.webp"></image>
+  </g>
   <clipPath id="mole-reveal-clip" clipPathUnits="userSpaceOnUse">
     <rect x="0" y="0" width="827.75" height="710" />
   </clipPath>
@@ -509,37 +720,62 @@
   <a href="https://www.instagram.com/emmasedlak/" target="_blank" rel="noopener">instagram</a>
 </nav>
 
+<section class="game-hud" aria-label="Whack-a-mole game">
+  <div class="hud-stats" aria-live="polite">
+    <span>Score<b id="score">0</b></span>
+    <span>Time<b id="time">30</b></span>
+    <span>Best<b id="best">0</b></span>
+  </div>
+  <button type="button" id="start-btn" class="start-btn">Start</button>
+  <p class="game-msg" id="game-msg">Whack the moles before they duck back down!</p>
+  <form class="name-form" id="name-form" autocomplete="off" hidden>
+    <label for="name-input">New best! Add your name to the leaderboard:</label>
+    <div class="name-row">
+      <input id="name-input" type="text" maxlength="16" placeholder="Your name">
+      <button type="submit" class="start-btn small">Save</button>
+      <button type="button" id="name-skip" class="link-btn">Skip</button>
+    </div>
+  </form>
+</section>
+
 <nav>
   <ul class="holes">
     <li>
-      <div class="hole-slot" tabindex="0" aria-label="Work">
+      <div class="hole-slot" tabindex="0" role="button" aria-label="Mole hole 1">
         <svg viewBox="0 0 827.75 921.55">
           <use href="#hole-back" xlink:href="#hole-back"></use>
-          <g class="mole-reveal"><g class="mole-layer"><use href="#mole-fig" xlink:href="#mole-fig"></use></g></g>
+          <g class="mole-reveal"><g class="mole-layer"><use class="mole-alive" href="#mole-fig" xlink:href="#mole-fig"></use><use class="mole-dead" href="#dead-mole-fig" xlink:href="#dead-mole-fig"></use></g></g>
           <use href="#hole-front" xlink:href="#hole-front"></use>
         </svg>
       </div>
     </li>
     <li>
-      <div class="hole-slot" tabindex="0" aria-label="Play">
+      <div class="hole-slot" tabindex="0" role="button" aria-label="Mole hole 2">
         <svg viewBox="0 0 827.75 921.55">
           <use href="#hole-back" xlink:href="#hole-back"></use>
-          <g class="mole-reveal"><g class="mole-layer"><use href="#mole-fig" xlink:href="#mole-fig"></use></g></g>
+          <g class="mole-reveal"><g class="mole-layer"><use class="mole-alive" href="#mole-fig" xlink:href="#mole-fig"></use><use class="mole-dead" href="#dead-mole-fig" xlink:href="#dead-mole-fig"></use></g></g>
           <use href="#hole-front" xlink:href="#hole-front"></use>
         </svg>
       </div>
     </li>
     <li>
-      <div class="hole-slot" tabindex="0" aria-label="Bio">
+      <div class="hole-slot" tabindex="0" role="button" aria-label="Mole hole 3">
         <svg viewBox="0 0 827.75 921.55">
           <use href="#hole-back" xlink:href="#hole-back"></use>
-          <g class="mole-reveal"><g class="mole-layer"><use href="#mole-fig" xlink:href="#mole-fig"></use></g></g>
+          <g class="mole-reveal"><g class="mole-layer"><use class="mole-alive" href="#mole-fig" xlink:href="#mole-fig"></use><use class="mole-dead" href="#dead-mole-fig" xlink:href="#dead-mole-fig"></use></g></g>
           <use href="#hole-front" xlink:href="#hole-front"></use>
         </svg>
       </div>
     </li>
   </ul>
 </nav>
+
+<section class="leaderboard" aria-labelledby="board-title">
+  <h2 id="board-title">Leaderboard</h2>
+  <ol class="board" id="board"></ol>
+  <p class="board-empty" id="board-empty">No scores yet &mdash; be the first.</p>
+  <p class="board-note">Scores are saved in this browser.</p>
+</section>
 
 <img id="mallet-pointer" src="mallet-cursor.png" alt="" aria-hidden="true">
 
@@ -581,6 +817,220 @@
   document.addEventListener("mousedown", swingOn);
   document.addEventListener("mouseup", swingOff);
   window.addEventListener("blur", swingOff);
+})();
+</script>
+
+<script>
+/* Whack-a-mole: 30-second rounds. Moles pop up at random and duck back down
+   on their own; a hit swaps in the knocked-out mole, scores a point, and it
+   sinks a moment later. Pace picks up as the round goes on. */
+(function () {
+  var DURATION = 30000;
+  var BEST_KEY = "emma-whack-best";
+
+  var holes = Array.prototype.slice.call(document.querySelectorAll(".hole-slot"));
+  var scoreEl = document.getElementById("score");
+  var timeEl = document.getElementById("time");
+  var bestEl = document.getElementById("best");
+  var btn = document.getElementById("start-btn");
+  var msg = document.getElementById("game-msg");
+
+  var running = false;
+  var score = 0;
+  var best = 0;
+  var startAt = 0;
+  var endAt = 0;
+  var spawnTimer = null;
+  var tickTimer = null;
+  var lastHole = null;
+
+  var BOARD_KEY = "emma-whack-board";
+  var BOARD_SIZE = 10;
+  var form = document.getElementById("name-form");
+  var nameInput = document.getElementById("name-input");
+  var skipBtn = document.getElementById("name-skip");
+  var boardEl = document.getElementById("board");
+  var boardEmpty = document.getElementById("board-empty");
+  var pendingScore = 0;
+
+  try { best = parseInt(localStorage.getItem(BEST_KEY), 10) || 0; } catch (err) {}
+  bestEl.textContent = best;
+
+  function loadBoard() {
+    try {
+      var data = JSON.parse(localStorage.getItem(BOARD_KEY));
+      return Array.isArray(data) ? data : [];
+    } catch (err) {
+      return [];
+    }
+  }
+
+  function saveBoard(entries) {
+    try { localStorage.setItem(BOARD_KEY, JSON.stringify(entries)); } catch (err) {}
+  }
+
+  // names go in via textContent only, never innerHTML
+  function renderBoard(freshId) {
+    var entries = loadBoard();
+    boardEl.textContent = "";
+    boardEmpty.hidden = entries.length > 0;
+    entries.forEach(function (entry, i) {
+      var li = document.createElement("li");
+      if (entry.id === freshId) li.className = "fresh";
+      var rank = document.createElement("span");
+      rank.className = "rank";
+      rank.textContent = i + 1 + ".";
+      var name = document.createElement("span");
+      name.textContent = String(entry.name);
+      var pts = document.createElement("span");
+      pts.className = "pts";
+      pts.textContent = entry.score;
+      li.appendChild(rank);
+      li.appendChild(name);
+      li.appendChild(pts);
+      boardEl.appendChild(li);
+    });
+  }
+
+  function addEntry(name, points) {
+    var entries = loadBoard();
+    var entry = { id: Date.now(), name: name, score: points };
+    entries.push(entry);
+    entries.sort(function (a, b) { return b.score - a.score || a.id - b.id; });
+    saveBoard(entries.slice(0, BOARD_SIZE));
+    renderBoard(entry.id);
+  }
+
+  function closeForm() {
+    form.hidden = true;
+    pendingScore = 0;
+  }
+
+  renderBoard();
+
+  holes.forEach(function (h) { h._state = "idle"; h._timer = null; });
+
+  function rand(min, max) { return min + Math.random() * (max - min); }
+
+  function progress() {
+    return Math.min(1, (performance.now() - startAt) / DURATION);
+  }
+
+  function inState(state) {
+    return holes.filter(function (h) { return h._state === state; });
+  }
+
+  function pop(h) {
+    h._state = "up";
+    lastHole = h;
+    h.classList.add("up");
+    var stayFor = Math.max(420, rand(760, 1100) - progress() * 400);
+    h._timer = setTimeout(function () { retreat(h); }, stayFor);
+  }
+
+  function retreat(h) {
+    clearTimeout(h._timer);
+    h._state = "down";
+    h.classList.remove("up");
+    // hold the hole closed until the mole has fully sunk, then reset its art
+    h._timer = setTimeout(function () {
+      h.classList.remove("is-dead");
+      h._state = "idle";
+    }, 240);
+  }
+
+  function spawn() {
+    if (!running) return;
+    var t = progress();
+    var maxUp = t > 0.35 ? 2 : 1;
+    if (inState("up").length < maxUp) {
+      var open = inState("idle");
+      var fresh = open.filter(function (h) { return h !== lastHole; });
+      var pool = fresh.length ? fresh : open;
+      if (pool.length) pop(pool[Math.floor(Math.random() * pool.length)]);
+    }
+    spawnTimer = setTimeout(spawn, Math.max(230, rand(370, 700) - t * 220));
+  }
+
+  function whack(h) {
+    if (!running || h._state !== "up") return;
+    clearTimeout(h._timer);
+    h._state = "dead";
+    h.classList.add("is-dead");
+    score += 1;
+    scoreEl.textContent = score;
+    h._timer = setTimeout(function () { retreat(h); }, 380);
+  }
+
+  function tick() {
+    var remaining = endAt - performance.now();
+    timeEl.textContent = Math.max(0, Math.ceil(remaining / 1000));
+    if (remaining <= 0) end();
+  }
+
+  function start() {
+    if (running) return;
+    closeForm();
+    score = 0;
+    scoreEl.textContent = 0;
+    timeEl.textContent = Math.round(DURATION / 1000);
+    startAt = performance.now();
+    endAt = startAt + DURATION;
+    running = true;
+    btn.disabled = true;
+    btn.textContent = "Go!";
+    msg.textContent = "Whack 'em!";
+    tickTimer = setInterval(tick, 100);
+    spawnTimer = setTimeout(spawn, 500);
+  }
+
+  function end() {
+    running = false;
+    clearInterval(tickTimer);
+    clearTimeout(spawnTimer);
+    timeEl.textContent = 0;
+    inState("up").forEach(retreat);
+
+    var newBest = score > best;
+    if (newBest) {
+      best = score;
+      bestEl.textContent = best;
+      try { localStorage.setItem(BEST_KEY, String(best)); } catch (err) {}
+    }
+    msg.textContent = "Time! You whacked " + score + (score === 1 ? " mole" : " moles") +
+      (newBest && score > 0 ? " — new best!" : ".");
+    btn.disabled = false;
+    btn.textContent = "Play again";
+
+    if (newBest && score > 0) {
+      pendingScore = score;
+      form.hidden = false;
+      nameInput.value = "";
+      nameInput.focus();
+    }
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = nameInput.value.replace(/\s+/g, " ").trim().slice(0, 16) || "Anonymous";
+    var points = pendingScore;
+    closeForm();
+    if (points > 0) addEntry(name, points);
+  });
+
+  skipBtn.addEventListener("click", closeForm);
+
+  holes.forEach(function (h) {
+    h.addEventListener("pointerdown", function () { whack(h); });
+    h.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        whack(h);
+      }
+    });
+  });
+
+  btn.addEventListener("click", start);
 })();
 </script>
 
