@@ -3,7 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Emma Sedlak | Work</title>
+<title>Emma Sedlak &mdash; Cleveland Journalist</title>
+<meta name="description" content="Emma Sedlak is a local accountability reporter in Cleveland, Ohio, turning public records into data stories and tools. Selected clips and the Cleveland Police Discipline Database.">
+<link rel="canonical" href="https://www.emma-sedlak.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Emma Sedlak">
+<meta property="og:url" content="https://www.emma-sedlak.com/">
+<meta property="og:title" content="Emma Sedlak | Accountability reporter in Cleveland, OH">
+<meta property="og:description" content="Local accountability reporter turning public records into data stories and tools.">
+<meta property="og:image" content="https://www.emma-sedlak.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Emma Sedlak, set in a decorative pink and yellow marquee banner">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Emma Sedlak | Accountability reporter in Cleveland, OH">
+<meta name="twitter:description" content="Local accountability reporter turning public records into data stories and tools.">
+<meta name="twitter:image" content="https://www.emma-sedlak.com/og-image.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -53,6 +70,29 @@
     color: #945029;
   }
 
+  /* readable by search engines and screen readers, invisible on screen */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* repeat of the cv / email / linkedin links at the foot of the page */
+  .bottom-menu {
+    justify-content: center;
+    width: min(1080px, 94vw);
+    margin: clamp(2rem, 6vw, 3rem) 0 clamp(2.5rem, 7vw, 3.5rem);
+    padding-top: clamp(1.25rem, 3vw, 1.75rem);
+    border-top: 2px solid rgba(102, 20, 0, .18);
+  }
+
   .marquee {
     width: min(1242px, 94vw);
     margin: clamp(1rem, 4vw, 2.5rem) 0 0;
@@ -81,6 +121,17 @@
   .tagline img {
     width: 100%;
     display: block;
+  }
+
+  .pitch {
+    width: min(700px, 92vw);
+    margin: clamp(.9rem, 2.5vw, 1.4rem) 0 0;
+    text-align: center;
+    text-wrap: balance;
+    font-family: "Libre Baskerville", Georgia, serif;
+    font-size: clamp(1.25rem, 2.9vw, 1.6rem);
+    line-height: 1.3;
+    color: #2a0800;
   }
 
   /* ---- site nav: same work/play/bio labels as the homepage, no holes ---- */
@@ -162,44 +213,152 @@
       0 8px 18px rgba(0, 0, 0, 0.2);
   }
 
-  /* for graphic/illustration thumbs that shouldn't be cropped */
-  .story-thumb--contain {
-    object-fit: contain;
+  /* ---- featured project ---- */
+  .featured {
+    width: min(1080px, 94vw);
+    margin: 0 0 clamp(2.5rem, 7vw, 4rem);
     background: #fff;
-    padding: clamp(.5rem, 1.5vw, .9rem);
-    box-sizing: border-box;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 3px #d1d400,
+      0 0 0 6px #661400,
+      0 10px 24px rgba(0, 0, 0, 0.22);
   }
 
-  /* a story card that carries an extra link beneath it */
-  .story-with-link {
-    display: grid;
-    grid-template-columns: minmax(0, 281px) 1fr;
-    column-gap: clamp(1rem, 3vw, 1.75rem);
+  .featured-banner {
+    width: 100%;
+    display: block;
+    aspect-ratio: 1200 / 630;
+    object-fit: cover;
   }
 
-  .story-with-link .story {
-    grid-column: 1 / -1;
-    grid-row: 1;
+  .featured-body {
+    padding: clamp(1.25rem, 3.5vw, 2.25rem);
   }
 
-  .story-extra {
-    grid-column: 2;
-    grid-row: 2;
-    margin: .5rem 0 0;
+  .featured-label {
+    margin: 0 0 .45rem;
     font-family: "Space Mono", monospace;
-    font-size: clamp(.8rem, 1.7vw, .95rem);
+    font-weight: bold;
+    font-size: .8rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #945029;
+  }
+
+  .featured-title {
+    margin: 0 0 .7rem;
+    font-family: "Libre Baskerville", Georgia, serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    line-height: 1.2;
+    color: #2a0800;
+  }
+
+  .featured-desc {
+    margin: 0 0 clamp(1.25rem, 3vw, 1.75rem);
+    max-width: 62ch;
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    line-height: 1.5;
+    color: #333;
+  }
+
+  .featured-cta {
+    display: inline-block;
+    font-family: "Space Mono", monospace;
+    font-weight: bold;
+    font-size: clamp(1rem, 2.3vw, 1.2rem);
     letter-spacing: .02em;
-  }
-
-  .story-extra a {
-    color: #661400;
+    color: #fff;
+    background: #661400;
+    border: 3px solid #661400;
+    border-radius: 999px;
+    padding: .7em 1.4em;
     text-decoration: none;
-    border-bottom: 2px solid #d1d400;
+    transition: background .15s ease, color .15s ease;
   }
 
-  .story-extra a:hover,
-  .story-extra a:focus-visible {
-    border-bottom-color: #661400;
+  .featured-cta:hover,
+  .featured-cta:focus-visible {
+    background: #d1d400;
+    color: #661400;
+  }
+
+  .featured-cta:focus-visible {
+    outline: 3px dashed #661400;
+    outline-offset: 4px;
+  }
+
+  .series-label {
+    margin: clamp(1.75rem, 4vw, 2.25rem) 0 0;
+    padding-top: clamp(1.25rem, 3vw, 1.5rem);
+    border-top: 2px solid rgba(102, 20, 0, .18);
+    font-family: "Space Mono", monospace;
+    font-weight: bold;
+    font-size: .8rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #945029;
+  }
+
+  .series-links {
+    list-style: none;
+    margin: clamp(.9rem, 2.5vw, 1.2rem) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(.85rem, 2.2vw, 1.15rem);
+  }
+
+  .series-links a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .series-headline {
+    margin: 0;
+    font-family: "Libre Baskerville", Georgia, serif;
+    font-size: clamp(1rem, 2.2vw, 1.12rem);
+    line-height: 1.35;
+    color: #661400;
+  }
+
+  .series-links a:hover .series-headline,
+  .series-links a:focus-visible .series-headline {
+    text-decoration: underline;
+  }
+
+  .series-date {
+    font-family: "Space Mono", monospace;
+    font-size: .85em;
+    letter-spacing: .04em;
+    color: #945029;
+    white-space: nowrap;
+  }
+
+  .series-sub {
+    margin: .2rem 0 0;
+    font-size: clamp(.9rem, 2vw, 1rem);
+    line-height: 1.4;
+    color: #555;
+  }
+
+  .series-links a:focus-visible {
+    outline: 3px dashed #661400;
+    outline-offset: 4px;
+    border-radius: 6px;
+  }
+
+  .section-label {
+    width: min(1080px, 94vw);
+    margin: 0 0 clamp(1rem, 3vw, 1.5rem);
+    font-family: "Space Mono", monospace;
+    font-weight: bold;
+    font-size: .8rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #945029;
   }
 
   .story-outlet {
@@ -238,12 +397,8 @@
   }
 
   @media (max-width: 480px) {
-    .story,
-    .story-with-link {
+    .story {
       grid-template-columns: 1fr;
-    }
-    .story-extra {
-      grid-column: 1;
     }
     .story-thumb {
       aspect-ratio: 16 / 9;
@@ -255,10 +410,13 @@
 <body>
 
 <header class="marquee">
+  <h1 class="visually-hidden">Emma Sedlak</h1>
   <a href="index.html" aria-label="Emma Sedlak home"><img src="marquee.png" alt="Emma Sedlak"></a>
 </header>
 
-<p class="tagline"><img src="subheading.png" alt="Journalist in Cleveland, OH"></p>
+<p class="tagline"><img src="subheading.png" alt="Journalist in Cleveland, OH"><span class="visually-hidden">Journalist in Cleveland, OH</span></p>
+
+<p class="pitch">Local accountability reporter turning public records into data stories and tools.</p>
 
 <nav>
   <ul class="labels">
@@ -278,45 +436,64 @@
   <a href="https://www.instagram.com/emmasedlak/" target="_blank" rel="noopener">instagram</a>
 </nav>
 
+<section class="featured">
+  <img class="featured-banner" src="https://signalcleveland.org/wp-content/uploads/2026/10/signal_cpd_database_badge_1200x6302.png" alt="Illustration of a magnifying glass held over a Cleveland police discipline badge, with rows of officers behind it" loading="lazy">
+  <div class="featured-body">
+    <p class="featured-label">Featured project</p>
+    <h2 class="featured-title">Cleveland Police Discipline Database</h2>
+    <p class="featured-desc">I reviewed nearly 2,000 Cleveland police disciplinary records covering about a decade and built them into the first searchable public database. The data powered a series about police discipline.</p>
+    <a class="featured-cta" href="https://cleveland-police-discipline.signalcleveland.org/" target="_blank" rel="noopener">Search the database &rarr;</a>
+
+    <p class="series-label">Stories from the series</p>
+    <ul class="series-links">
+      <li>
+        <a href="https://signalcleveland.org/how-cleveland-police-discipline-works/" target="_blank" rel="noopener">
+          <p class="series-headline">How Cleveland police discipline works</p>
+          <p class="series-sub"><time datetime="2026-10-29" class="series-date">Oct. 29, 2026</time> <span aria-hidden="true">&middot;</span> An explainer on the complicated path a misconduct case takes.</p>
+        </a>
+      </li>
+      <li>
+        <a href="https://signalcleveland.org/search-10-years-of-cleveland-police-discipline-records/" target="_blank" rel="noopener">
+          <p class="series-headline">New tool lets Clevelanders search police discipline cases</p>
+          <p class="series-sub"><time datetime="2026-10-19" class="series-date">Oct. 19, 2026</time> <span aria-hidden="true">&middot;</span> Launching the database: what is in it and how to use it.</p>
+        </a>
+      </li>
+      <li>
+        <a href="https://signalcleveland.org/cleveland-police-discipline-body-camera-data/" target="_blank" rel="noopener">
+          <p class="series-headline">How body camera violations became a top Cleveland police discipline charge</p>
+          <p class="series-sub"><time datetime="2026-10-19" class="series-date">Oct. 19, 2026</time> <span aria-hidden="true">&middot;</span> Body camera rules now drive more cases than almost any other charge.</p>
+        </a>
+      </li>
+      <li>
+        <a href="https://signalcleveland.org/cleveland-discipline-data-suspensions-hearings-data/" target="_blank" rel="noopener">
+          <p class="series-headline">Cleveland police discipline: What gets punished and how</p>
+          <p class="series-sub"><time datetime="2026-10-19" class="series-date">Oct. 19, 2026</time> <span aria-hidden="true">&middot;</span> Nearly half of hearings ended in suspension; under 4% ended in firing.</p>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<h2 class="section-label">More clips</h2>
+
 <ul class="stories">
   <li>
-    <a class="story" href="https://signalcleveland.org/how-cleveland-police-discipline-works/" target="_blank" rel="noopener">
-      <img class="story-thumb story-thumb--contain" src="https://signalcleveland.org/wp-content/uploads/2026/10/how-police-discipline-works-1-scaled.png" alt="" loading="lazy">
+    <a class="story" href="https://signalcleveland.org/cleveland-seniors-say-its-harder-to-put-food-on-the-table-as-prices-rise-and-the-safety-net-shrinks/" target="_blank" rel="noopener">
+      <img class="story-thumb" src="https://i0.wp.com/signalcleveland.org/wp-content/uploads/2026/10/Untitled-design.png?fit=900%2C540&amp;quality=85&amp;ssl=1" alt="" loading="lazy">
       <span>
-        <p class="story-outlet">Signal Cleveland</p>
-        <p class="story-title">How Cleveland police discipline works</p>
-        <p class="story-desc">The process for disciplining Cleveland police officers and employees for misconduct is complicated &mdash; here are the basics.</p>
-      </span>
-    </a>
-  </li>
-  <li class="story-with-link">
-    <a class="story" href="https://signalcleveland.org/search-10-years-of-cleveland-police-discipline-records/" target="_blank" rel="noopener">
-      <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2026/10/signal_cpd_database_badge_1200x6302.png" alt="" loading="lazy">
-      <span>
-        <p class="story-outlet">Signal Cleveland</p>
-        <p class="story-title">New tool lets Clevelanders search police discipline cases</p>
-        <p class="story-desc">A searchable database of roughly a decade of Cleveland police discipline cases, showing the outcomes of misconduct investigations and citizen complaints.</p>
-      </span>
-    </a>
-    <p class="story-extra"><a href="https://cleveland-police-discipline.signalcleveland.org/" target="_blank" rel="noopener">Search the database &rarr;</a></p>
-  </li>
-  <li>
-    <a class="story" href="https://signalcleveland.org/cleveland-police-discipline-body-camera-data/" target="_blank" rel="noopener">
-      <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2026/10/signal_cpd_database_bodycam_yellow.png" alt="" loading="lazy">
-      <span>
-        <p class="story-outlet">Signal Cleveland</p>
-        <p class="story-title">How body camera violations became a top Cleveland police discipline charge</p>
-        <p class="story-desc">What a decade of records shows about how Cleveland police have handled body camera use violations.</p>
+        <p class="story-outlet">Signal Cleveland <span aria-hidden="true">&middot;</span> <time datetime="2026-10-08">Oct. 8, 2026</time></p>
+        <p class="story-title">Cleveland seniors say it&rsquo;s harder to put food on the table as prices rise and the safety net shrinks</p>
+        <p class="story-desc">As SNAP benefits shrink and local safety nets wear thin, Cleveland seniors still have to find a way to eat &mdash; I designed the custom HTML, CSS, and JavaScript behind this story&rsquo;s layout.</p>
       </span>
     </a>
   </li>
   <li>
-    <a class="story" href="https://signalcleveland.org/cleveland-discipline-data-suspensions-hearings-data/" target="_blank" rel="noopener">
-      <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2026/10/signal_cpd_database_stats.png" alt="" loading="lazy">
+    <a class="story" href="https://signalcleveland.org/these-seven-cleveland-seniors-share-tips-for-eating-well-on-a-tight-budget/" target="_blank" rel="noopener">
+      <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2026/09/IMG_6725-scaled.jpg" alt="" loading="lazy">
       <span>
-        <p class="story-outlet">Signal Cleveland</p>
-        <p class="story-title">Cleveland police discipline: What gets punished and how</p>
-        <p class="story-desc">Ten years of discipline records show hearing trends and charges. Nearly half of hearings ended in suspension; under 4% ended in firing.</p>
+        <p class="story-outlet">Signal Cleveland <span aria-hidden="true">&middot;</span> <time datetime="2026-10-08">Oct. 8, 2026</time></p>
+        <p class="story-title">These seven Cleveland seniors share tips for eating well on a tight budget</p>
+        <p class="story-desc">From Crock-Pot meals to extra money from health insurance, seven seniors share how they keep their pantries full &mdash; I designed the custom HTML, CSS, and JavaScript behind this story&rsquo;s layout.</p>
       </span>
     </a>
   </li>
@@ -324,7 +501,7 @@
     <a class="story" href="https://signalcleveland.org/i-buy-crack-houses-billboard-investor-john-williams-cleveland-affordable-housing/" target="_blank" rel="noopener">
       <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2026/07/Cleveland-John-Williams-Billboards-11-scaled.jpg" alt="" loading="lazy">
       <span>
-        <p class="story-outlet">Signal Cleveland</p>
+        <p class="story-outlet">Signal Cleveland <span aria-hidden="true">&middot;</span> <time datetime="2026-09-14">Sept. 14, 2026</time></p>
         <p class="story-title">Behind a Cleveland investor's rage-baiting billboards? An affordable housing story</p>
         <p class="story-desc">Investor John Williams came to Cleveland to buy 1,000 houses. His billboards stoked controversy. He says he's an affordable housing provider.</p>
       </span>
@@ -334,7 +511,7 @@
     <a class="story" href="https://signalcleveland.org/cleveland-sausage-links-history-butcher-shop/" target="_blank" rel="noopener">
       <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2026/08/Cleveland-Sausage-1-1536x1022.jpg" alt="" loading="lazy">
       <span>
-        <p class="story-outlet">Signal Cleveland</p>
+        <p class="story-outlet">Signal Cleveland <span aria-hidden="true">&middot;</span> <time datetime="2026-09-03">Sept. 3, 2026</time></p>
         <p class="story-title">Cleveland's sausage trail</p>
         <p class="story-desc">A scrollytelling deep dive into Cleveland's century-long sausage traditions &mdash; I designed the custom HTML, CSS, and JavaScript that power this page's interactive layout.</p>
       </span>
@@ -344,7 +521,7 @@
     <a class="story" href="https://signalcleveland.org/cleveland-local-government-glossary-documenters/" target="_blank" rel="noopener">
       <img class="story-thumb" src="https://i0.wp.com/signalcleveland.org/wp-content/uploads/2026/07/Local-Government-glossary-2-.png?fit=1366%2C768&amp;ssl=1" alt="" loading="lazy">
       <span>
-        <p class="story-outlet">Signal Cleveland &middot; Cleveland Documenters</p>
+        <p class="story-outlet">Signal Cleveland &middot; Cleveland Documenters <span aria-hidden="true">&middot;</span> <time datetime="2026-07-30">July 30, 2026</time></p>
         <p class="story-title">Cleveland Documenters guide to local government terms</p>
         <p class="story-desc">A glossary of local government terms Clevelanders actually run into at public meetings.</p>
       </span>
@@ -354,7 +531,7 @@
     <a class="story" href="https://signalcleveland.org/surviving-year-one-for-latino-vendors-at-centrovilla25-was-about-hope-and-hard-lessons-clark-fulton-hispanic-business/" target="_blank" rel="noopener">
       <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2026/04/CentroVilla-Cleveland-3.jpg" alt="" loading="lazy">
       <span>
-        <p class="story-outlet">Signal Cleveland</p>
+        <p class="story-outlet">Signal Cleveland <span aria-hidden="true">&middot;</span> <time datetime="2026-04-27">April 27, 2026</time></p>
         <p class="story-title">Surviving year one at CentroVilla25 Latino market hall</p>
         <p class="story-desc">It took years to open CentroVilla25 in Cleveland's Clark-Fulton neighborhood &mdash; here's how the first year went for its vendors.</p>
       </span>
@@ -364,7 +541,7 @@
     <a class="story" href="https://signalcleveland.org/snap-changes-work-requirements-one-big-beautiful-bill-february-1-2026/" target="_blank" rel="noopener">
       <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2025/05/Grocery_DONE-28.jpg" alt="" loading="lazy">
       <span>
-        <p class="story-outlet">Signal Cleveland</p>
+        <p class="story-outlet">Signal Cleveland <span aria-hidden="true">&middot;</span> <time datetime="2026-01-28">Jan. 28, 2026</time></p>
         <p class="story-title">New SNAP work requirements start Feb. 1, 2026</p>
         <p class="story-desc">New federal rules for SNAP benefits expand work requirements and cut some exemptions &mdash; here's what to know.</p>
       </span>
@@ -374,7 +551,7 @@
     <a class="story" href="https://signalcleveland.org/inside-clevelands-pay-as-you-can-plumbing-co-op-that-sees-clean-water-as-a-human-right-peoples-plumbling/" target="_blank" rel="noopener">
       <img class="story-thumb" src="https://i0.wp.com/signalcleveland.org/wp-content/uploads/2026/01/Cristobal-dig-job.png?fit=696%2C464&amp;ssl=1" alt="" loading="lazy">
       <span>
-        <p class="story-outlet">Signal Cleveland</p>
+        <p class="story-outlet">Signal Cleveland <span aria-hidden="true">&middot;</span> <time datetime="2026-01-21">Jan. 21, 2026</time></p>
         <p class="story-title">People's Plumbing offers pay-what-you-can repairs in Cleveland</p>
         <p class="story-desc">Inside the pay-as-you-can plumbing co-op that treats clean water as a human right, using a gift-economy model where people pay workers what they can.</p>
       </span>
@@ -384,7 +561,7 @@
     <a class="story" href="https://signalcleveland.org/cleveland-metroparks-to-test-drones-for-rescues-emergency-police-calls-surveillance/" target="_blank" rel="noopener">
       <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2026/01/Drone-Image-1-1.png" alt="" loading="lazy">
       <span>
-        <p class="story-outlet">Signal Cleveland</p>
+        <p class="story-outlet">Signal Cleveland <span aria-hidden="true">&middot;</span> <time datetime="2026-01-12">Jan. 12, 2026</time></p>
         <p class="story-title">Cleveland Metroparks to test drones for emergency calls</p>
         <p class="story-desc">Cleveland Metroparks police will test using drones to help with rescues and respond to emergencies this year.</p>
       </span>
@@ -394,7 +571,7 @@
     <a class="story" href="https://signalcleveland.org/how-one-couple-is-turned-pain-into-the-little-ouchies-tool-for-healing-cleveland/" target="_blank" rel="noopener">
       <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2025/12/Screenshot-2025-12-21-at-6.57.10-PM-e1766361617237.png" alt="" loading="lazy">
       <span>
-        <p class="story-outlet">Signal Cleveland</p>
+        <p class="story-outlet">Signal Cleveland <span aria-hidden="true">&middot;</span> <time datetime="2025-12-23">Dec. 23, 2025</time></p>
         <p class="story-title">How one couple turned pain into &lsquo;Little Ouchies&rsquo;</p>
         <p class="story-desc">Cleveland-made Little Ouchies grippie devices help with sensory overload for people with autism or PTSD symptoms.</p>
       </span>
@@ -404,7 +581,7 @@
     <a class="story" href="https://journalismdesign.com/my-cleveland-agenda-election/" target="_blank" rel="noopener">
       <img class="story-thumb" src="https://journalismdesign.com/wp-content/uploads/2025/10/fellows-1-jpg-2.webp" alt="" loading="lazy">
       <span>
-        <p class="story-outlet">The New School &middot; Journalism + Design Lab</p>
+        <p class="story-outlet">The New School &middot; Journalism + Design Lab <span aria-hidden="true">&middot;</span> <time datetime="2025-10-16">Oct. 16, 2025</time></p>
         <p class="story-title">Community listening reveals what matters to Clevelanders on Election Day</p>
         <p class="story-desc">Results from My Cleveland Agenda, a collaborative listening project gathering resident priorities ahead of the November election.</p>
       </span>
@@ -414,7 +591,7 @@
     <a class="story" href="https://signalcleveland.org/cmsd-shares-perfect-storm-of-challenges-at-community-meetings-ahead-of-decisions-that-will-reshape-the-district/" target="_blank" rel="noopener">
       <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2025/10/B60D2CC4-B97D-4705-AC8C-BFBA69435FC1_1_201_a-scaled.jpg" alt="" loading="lazy">
       <span>
-        <p class="story-outlet">Signal Cleveland</p>
+        <p class="story-outlet">Signal Cleveland <span aria-hidden="true">&middot;</span> <time datetime="2025-10-16">Oct. 16, 2025</time></p>
         <p class="story-title">CMSD shares &lsquo;perfect storm of challenges&rsquo; at community meetings</p>
         <p class="story-desc">At eight meetings, CMSD shared with parents, teachers, community members and students how they will decide which schools to close.</p>
       </span>
@@ -424,13 +601,46 @@
     <a class="story" href="https://signalcleveland.org/should-cuyahoga-county-keep-its-money-in-israel-residents-debate-for-nearly-four-hours-at-county-meeting/" target="_blank" rel="noopener">
       <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2024/06/Header-image-6.jpg" alt="" loading="lazy">
       <span>
-        <p class="story-outlet">Signal Cleveland &middot; Cleveland Documenters</p>
+        <p class="story-outlet">Signal Cleveland &middot; Cleveland Documenters <span aria-hidden="true">&middot;</span> <time datetime="2024-06-26">June 26, 2024</time></p>
         <p class="story-title">Cuyahoga County residents debate for four hours over Israel Bonds</p>
         <p class="story-desc">Dozens of residents spoke on a withdrawn resolution to pull local investments from Israel Bonds.</p>
       </span>
     </a>
   </li>
 </ul>
+
+<nav class="top-menu bottom-menu" aria-label="Contact links">
+  <a href="Sedlak%2C%20Emma%20Resume.pdf" target="_blank" rel="noopener">cv</a>
+  <span aria-hidden="true">/</span>
+  <a href="mailto:eesedla@gmail.com">email</a>
+  <span aria-hidden="true">/</span>
+  <a href="https://www.linkedin.com/in/emma-sedlak/" target="_blank" rel="noopener">linkedin</a>
+  <span aria-hidden="true">/</span>
+  <a href="https://www.instagram.com/emmasedlak/" target="_blank" rel="noopener">instagram</a>
+</nav>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Emma Sedlak",
+  "url": "https://www.emma-sedlak.com/",
+  "image": "https://www.emma-sedlak.com/og-image.png",
+  "jobTitle": "Accountability reporter",
+  "description": "Local accountability reporter turning public records into data stories and tools.",
+  "worksFor": { "@type": "Organization", "name": "Signal Cleveland" },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Cleveland",
+    "addressRegion": "OH",
+    "addressCountry": "US"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/emma-sedlak/",
+    "https://www.instagram.com/emmasedlak/"
+  ]
+}
+</script>
 
 </body>
 </html>
