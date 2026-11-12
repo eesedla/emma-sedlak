@@ -4,6 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Emma Sedlak | Play</title>
+<meta name="description" content="A whack-a-mole game and other side projects from Emma Sedlak, an accountability reporter in Cleveland, Ohio.">
+<link rel="canonical" href="https://www.emma-sedlak.com/play.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Emma Sedlak">
+<meta property="og:url" content="https://www.emma-sedlak.com/play.html">
+<meta property="og:title" content="Emma Sedlak | Play">
+<meta property="og:description" content="A whack-a-mole game and other side projects from Emma Sedlak, an accountability reporter in Cleveland, Ohio.">
+<meta property="og:image" content="https://www.emma-sedlak.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Emma Sedlak, set in a decorative pink and yellow marquee banner">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Emma Sedlak | Play">
+<meta name="twitter:description" content="A whack-a-mole game and other side projects from Emma Sedlak, an accountability reporter in Cleveland, Ohio.">
+<meta name="twitter:image" content="https://www.emma-sedlak.com/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -92,6 +108,29 @@
         }
 
   /* ---- marquee ---- */
+  /* readable by search engines and screen readers, invisible on screen */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* repeat of the cv / email / linkedin links at the foot of the page */
+  .bottom-menu {
+    justify-content: center;
+    width: min(1080px, 94vw);
+    margin: clamp(2rem, 6vw, 3rem) 0 clamp(2.5rem, 7vw, 3.5rem);
+    padding-top: clamp(1.25rem, 3vw, 1.75rem);
+    border-top: 2px solid rgba(102, 20, 0, .18);
+  }
+
   .marquee {
     width: min(1242px, 94vw);
     margin: clamp(1rem, 4vw, 2.5rem) 0 0;
@@ -715,10 +754,11 @@
 </svg>
 
 <header class="marquee">
+  <h1 class="visually-hidden">Emma Sedlak &mdash; Play</h1>
   <a href="index.html" aria-label="Emma Sedlak home"><img src="marquee.png" alt="Emma Sedlak"></a>
 </header>
 
-<p class="tagline"><img src="subheading.png" alt="Journalist in Cleveland, OH"></p>
+<p class="tagline"><img src="subheading.png" alt="Journalist in Cleveland, OH"><span class="visually-hidden">Journalist in Cleveland, OH</span></p>
 
 <nav>
   <ul class="labels">
@@ -794,6 +834,16 @@
   <p class="board-empty" id="board-empty">No scores yet &mdash; be the first.</p>
   <p class="board-note">Scores are saved in this browser.</p>
 </section>
+
+<nav class="top-menu bottom-menu" aria-label="Contact links">
+  <a href="Sedlak%2C%20Emma%20Resume.pdf" target="_blank" rel="noopener">cv</a>
+  <span aria-hidden="true">/</span>
+  <a href="mailto:eesedla@gmail.com">email</a>
+  <span aria-hidden="true">/</span>
+  <a href="https://www.linkedin.com/in/emma-sedlak/" target="_blank" rel="noopener">linkedin</a>
+  <span aria-hidden="true">/</span>
+  <a href="https://www.instagram.com/emmasedlak/" target="_blank" rel="noopener">instagram</a>
+</nav>
 
 <img id="mallet-pointer" src="mallet-cursor.png" alt="" aria-hidden="true">
 
