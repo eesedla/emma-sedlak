@@ -162,6 +162,46 @@
       0 8px 18px rgba(0, 0, 0, 0.2);
   }
 
+  /* for graphic/illustration thumbs that shouldn't be cropped */
+  .story-thumb--contain {
+    object-fit: contain;
+    background: #fff;
+    padding: clamp(.5rem, 1.5vw, .9rem);
+    box-sizing: border-box;
+  }
+
+  /* a story card that carries an extra link beneath it */
+  .story-with-link {
+    display: grid;
+    grid-template-columns: minmax(0, 281px) 1fr;
+    column-gap: clamp(1rem, 3vw, 1.75rem);
+  }
+
+  .story-with-link .story {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .story-extra {
+    grid-column: 2;
+    grid-row: 2;
+    margin: .5rem 0 0;
+    font-family: "Space Mono", monospace;
+    font-size: clamp(.8rem, 1.7vw, .95rem);
+    letter-spacing: .02em;
+  }
+
+  .story-extra a {
+    color: #661400;
+    text-decoration: none;
+    border-bottom: 2px solid #d1d400;
+  }
+
+  .story-extra a:hover,
+  .story-extra a:focus-visible {
+    border-bottom-color: #661400;
+  }
+
   .story-outlet {
     margin: 0 0 .15rem;
     font-family: "Space Mono", monospace;
@@ -198,8 +238,12 @@
   }
 
   @media (max-width: 480px) {
-    .story {
+    .story,
+    .story-with-link {
       grid-template-columns: 1fr;
+    }
+    .story-extra {
+      grid-column: 1;
     }
     .story-thumb {
       aspect-ratio: 16 / 9;
@@ -235,6 +279,47 @@
 </nav>
 
 <ul class="stories">
+  <li>
+    <a class="story" href="https://signalcleveland.org/how-cleveland-police-discipline-works/" target="_blank" rel="noopener">
+      <img class="story-thumb story-thumb--contain" src="https://signalcleveland.org/wp-content/uploads/2026/10/how-police-discipline-works-1-scaled.png" alt="" loading="lazy">
+      <span>
+        <p class="story-outlet">Signal Cleveland</p>
+        <p class="story-title">How Cleveland police discipline works</p>
+        <p class="story-desc">The process for disciplining Cleveland police officers and employees for misconduct is complicated &mdash; here are the basics.</p>
+      </span>
+    </a>
+  </li>
+  <li class="story-with-link">
+    <a class="story" href="https://signalcleveland.org/search-10-years-of-cleveland-police-discipline-records/" target="_blank" rel="noopener">
+      <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2026/10/signal_cpd_database_badge_1200x6302.png" alt="" loading="lazy">
+      <span>
+        <p class="story-outlet">Signal Cleveland</p>
+        <p class="story-title">New tool lets Clevelanders search police discipline cases</p>
+        <p class="story-desc">A searchable database of roughly a decade of Cleveland police discipline cases, showing the outcomes of misconduct investigations and citizen complaints.</p>
+      </span>
+    </a>
+    <p class="story-extra"><a href="https://cleveland-police-discipline.signalcleveland.org/" target="_blank" rel="noopener">Search the database &rarr;</a></p>
+  </li>
+  <li>
+    <a class="story" href="https://signalcleveland.org/cleveland-police-discipline-body-camera-data/" target="_blank" rel="noopener">
+      <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2026/10/signal_cpd_database_bodycam_yellow.png" alt="" loading="lazy">
+      <span>
+        <p class="story-outlet">Signal Cleveland</p>
+        <p class="story-title">How body camera violations became a top Cleveland police discipline charge</p>
+        <p class="story-desc">What a decade of records shows about how Cleveland police have handled body camera use violations.</p>
+      </span>
+    </a>
+  </li>
+  <li>
+    <a class="story" href="https://signalcleveland.org/cleveland-discipline-data-suspensions-hearings-data/" target="_blank" rel="noopener">
+      <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2026/10/signal_cpd_database_stats.png" alt="" loading="lazy">
+      <span>
+        <p class="story-outlet">Signal Cleveland</p>
+        <p class="story-title">Cleveland police discipline: What gets punished and how</p>
+        <p class="story-desc">Ten years of discipline records show hearing trends and charges. Nearly half of hearings ended in suspension; under 4% ended in firing.</p>
+      </span>
+    </a>
+  </li>
   <li>
     <a class="story" href="https://signalcleveland.org/i-buy-crack-houses-billboard-investor-john-williams-cleveland-affordable-housing/" target="_blank" rel="noopener">
       <img class="story-thumb" src="https://signalcleveland.org/wp-content/uploads/2026/07/Cleveland-John-Williams-Billboards-11-scaled.jpg" alt="" loading="lazy">
