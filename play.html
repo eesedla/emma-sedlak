@@ -191,12 +191,18 @@
 
   .mole-layer {
     transform: translateY(950px);
-    transition: transform 0.18s ease-in;
+    transition: transform 0.15s ease-in;
   }
 
   .hole-slot.up .mole-layer {
     transform: translateY(0);
-    transition: transform 0.11s cubic-bezier(.22, 1, .36, 1);
+    transition: transform 0.09s cubic-bezier(.22, 1, .36, 1);
+  }
+
+  /* fake-out: just the hat peeks out, then it ducks back down */
+  .hole-slot.peek .mole-layer {
+    transform: translateY(430px);
+    transition: transform 0.09s cubic-bezier(.22, 1, .36, 1);
   }
 
   .mole-dead,
@@ -235,9 +241,21 @@
   }
 
   .hud-stats b {
+    display: inline-block;
     color: #661400;
     font-size: 1.25em;
     margin-left: .3em;
+  }
+
+  .hud-stats b.miss {
+    color: #b3261e;
+    animation: miss-shake .3s ease;
+  }
+
+  @keyframes miss-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
   }
 
   .start-btn {
@@ -727,7 +745,7 @@
     <span>Best<b id="best">0</b></span>
   </div>
   <button type="button" id="start-btn" class="start-btn">Start</button>
-  <p class="game-msg" id="game-msg">Whack the moles before they duck back down!</p>
+  <p class="game-msg" id="game-msg">Whack the moles &mdash; but watch for fake-outs. Swinging at nothing costs a point.</p>
   <form class="name-form" id="name-form" autocomplete="off" hidden>
     <label for="name-input">New best! Add your name to the leaderboard:</label>
     <div class="name-row">
@@ -920,46 +938,82 @@
     return holes.filter(function (h) { return h._state === state; });
   }
 
-  function pop(h) {
-    h._state = "up";
+  // Real moles ("up") can be whacked. Fake-outs ("fake") only peek out and
+  // duck straight back down. Swinging at a fake or an empty hole costs a point.
+  function pop(h, forceQuick) {
+    var t = progress();
     lastHole = h;
+
+    if (t > 0.15 && Math.random() < 0.12 + t * 0.16) {
+      h._state = "fake";
+      h.classList.add("peek");
+      h._timer = setTimeout(function () { retreat(h); }, rand(220, 340));
+      return;
+    }
+
+    var quick = forceQuick || (t > 0.1 && Math.random() < 0.15 + t * 0.35);
+    var stayFor = quick ? rand(300, 430) : Math.max(380, rand(640, 940) - t * 300);
+    h._state = "up";
     h.classList.add("up");
-    var stayFor = Math.max(420, rand(760, 1100) - progress() * 400);
     h._timer = setTimeout(function () { retreat(h); }, stayFor);
   }
 
   function retreat(h) {
     clearTimeout(h._timer);
     h._state = "down";
-    h.classList.remove("up");
+    h.classList.remove("up", "peek");
     // hold the hole closed until the mole has fully sunk, then reset its art
     h._timer = setTimeout(function () {
       h.classList.remove("is-dead");
       h._state = "idle";
-    }, 240);
+    }, 200);
+  }
+
+  function openHole() {
+    var open = inState("idle");
+    var fresh = open.filter(function (h) { return h !== lastHole; });
+    var pool = fresh.length ? fresh : open;
+    return pool.length ? pool[Math.floor(Math.random() * pool.length)] : null;
   }
 
   function spawn() {
     if (!running) return;
     var t = progress();
-    var maxUp = t > 0.35 ? 2 : 1;
+    var maxUp = t > 0.75 ? 3 : t > 0.25 ? 2 : 1;
     if (inState("up").length < maxUp) {
-      var open = inState("idle");
-      var fresh = open.filter(function (h) { return h !== lastHole; });
-      var pool = fresh.length ? fresh : open;
-      if (pool.length) pop(pool[Math.floor(Math.random() * pool.length)]);
+      var h = openHole();
+      if (h) pop(h);
+      // later in the round, sometimes a second mole pops at the same instant
+      if (t > 0.3 && Math.random() < 0.2 && inState("up").length < maxUp) {
+        var h2 = openHole();
+        if (h2) pop(h2, true);
+      }
     }
-    spawnTimer = setTimeout(spawn, Math.max(230, rand(370, 700) - t * 220));
+    spawnTimer = setTimeout(spawn, Math.max(170, rand(300, 560) - t * 240));
+  }
+
+  function miss() {
+    if (score > 0) {
+      score -= 1;
+      scoreEl.textContent = score;
+    }
+    scoreEl.classList.remove("miss");
+    void scoreEl.offsetWidth; // restart the flash if misses come back to back
+    scoreEl.classList.add("miss");
   }
 
   function whack(h) {
-    if (!running || h._state !== "up") return;
-    clearTimeout(h._timer);
-    h._state = "dead";
-    h.classList.add("is-dead");
-    score += 1;
-    scoreEl.textContent = score;
-    h._timer = setTimeout(function () { retreat(h); }, 380);
+    if (!running) return;
+    if (h._state === "up") {
+      clearTimeout(h._timer);
+      h._state = "dead";
+      h.classList.add("is-dead");
+      score += 1;
+      scoreEl.textContent = score;
+      h._timer = setTimeout(function () { retreat(h); }, 340);
+    } else if (h._state !== "dead") {
+      miss();
+    }
   }
 
   function tick() {
@@ -979,7 +1033,7 @@
     running = true;
     btn.disabled = true;
     btn.textContent = "Go!";
-    msg.textContent = "Whack 'em!";
+    msg.textContent = "Go! Fake-outs and empty swings cost a point.";
     tickTimer = setInterval(tick, 100);
     spawnTimer = setTimeout(spawn, 500);
   }
